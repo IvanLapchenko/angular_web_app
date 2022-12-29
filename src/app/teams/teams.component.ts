@@ -3,6 +3,7 @@ import { Team } from '../team';
 import { TeamService } from '../team.service';
 import { HeroService } from '../hero.service';
 import { Hero } from '../hero';
+import { HeroesComponent } from '../heroes/heroes.component';
 
 @Component({
   selector: 'app-teams',
@@ -17,7 +18,7 @@ export class TeamsComponent {
   isAdmin: boolean = document.cookie == "admin";
 
   constructor(private teamService: TeamService,
-              private heroService: HeroService,  ) { }
+                private heroService: HeroService,  ) { }
 
   ngOnInit() {
     this.getHeroes();
@@ -60,5 +61,11 @@ export class TeamsComponent {
         if (team.members == undefined) team.members = []
         team.members.push(this.addedHero);
       })  
+  }
+
+  delete(hero: Hero, team: Team): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    team.members = team.members.filter(h => h !== hero);
+    this.heroService.deleteHero(hero.id).subscribe()
   }
 }

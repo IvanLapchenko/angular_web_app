@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   myForm: FormGroup;
 
+  isAuth: boolean = document.cookie.includes("admin") || document.cookie.includes("user");
+
   ngOnInit() {
     this.loginService.getUsers().subscribe(result => {
       this.users = result;
@@ -29,7 +31,12 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.myForm.value);
-    this.loginService.logIn(this.users, this.myForm);
+    this.isAuth = this.loginService.logIn(this.users, this.myForm);
+  }
+
+  logout() {
+    document.cookie = "a"
+    console.log(document.cookie)
+    this.isAuth = false;
   }
 }

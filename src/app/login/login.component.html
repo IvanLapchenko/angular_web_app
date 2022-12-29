@@ -1,4 +1,5 @@
-<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+<button *ngIf="isAuth" (click)="logout()">Log out</button>
+<form *ngIf="!isAuth" [formGroup]="myForm" novalidate (ngSubmit)="submit()">
 
 
   <div class="form-group">
