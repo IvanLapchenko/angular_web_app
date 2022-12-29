@@ -17,14 +17,12 @@ export class TeamService {
   getTeams(): Observable<Team[]> {
     return this.http.get<Team[]>(this.teamsUrl)
       .pipe(
-        tap(_ => console.log('fetched teams')),
         catchError(this.handleError<Team[]>('getTeams', []))
       );
   }
 
   addTeam(team: Team): Observable<Team> {
     return this.http.post<Team>(this.teamsUrl, team, this.httpOptions).pipe(
-      tap((newTeam: Team) => console.log(`added team w/ id=${newTeam.id}`)),
       catchError(this.handleError<Team>('addTeam'))
     );
   }

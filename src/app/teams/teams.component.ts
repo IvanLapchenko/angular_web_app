@@ -28,10 +28,6 @@ export class TeamsComponent {
   getTeams() {
     this.teamService.getTeams()
       .subscribe(result => this.teams = result)
-      .add(
-        console.log(this.teams)
-      );
-
   }
 
   getHeroes() {
@@ -41,9 +37,9 @@ export class TeamsComponent {
 
   add(name: string): void {
     name = name.trim();
-
     if (!name) { return; }
-    this.teamService.addTeam({ name, members } as Team)
+    if (this.teams.some(t => t.name == name)) { alert(`There is command with name ${name}`); return;}
+    this.teamService.addTeam({ name } as Team)
       .subscribe(team => { this.teams.push(team) });
   }
 
@@ -51,6 +47,7 @@ export class TeamsComponent {
     /*add new hero*/
     name = name.trim();
     if (!name) { return; }
+    if (this.heroes.some(h => h.name == name)) { alert(`There is hero with name ${name}`); return;}
     this.heroService.addHero({ name } as Hero)
       .subscribe(hero => {
         this.heroes.push(hero);
@@ -58,10 +55,9 @@ export class TeamsComponent {
       });
 
     /*add new hero to this team*/
-    console.log(team)
     this.teamService.addHero({ name } as Hero, team )
       .subscribe(a => {
-        console.log(team.members)
+        if (team.members == undefined) team.members = []
         team.members.push(this.addedHero);
       })  
   }

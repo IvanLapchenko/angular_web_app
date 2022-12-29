@@ -1,20 +1,19 @@
 <h2>Teams</h2>
 <div class="teams" *ngFor="let team of teams">
   <div>
+    <span class="name"><h3>{{team.name}}</h3></span>
     <div *ngFor="let i of team.members">
       {{i.name}}
     </div>
-    <span class="name"><h3>{{team.name}}</h3></span>
-  
 
-  <div *ngIf="isAdmin">
-    <label for="new-hero">Hero name: </label>
-    <input id="new-hero" #heroName />
+    <div *ngIf="isAdmin">
+      <label for="new-hero">Hero name: </label>
+      <input id="new-hero" #heroName />
 
-    <button type="button" class="add-button" (click)="addHero(heroName.value, team); heroName.value=''">
-      Add hero
-    </button>
-  </div>
+      <button type="button" class="add-button" (click)="addHero(heroName.value, team); heroName.value=''">
+        Add hero
+      </button>
+    </div>
 
   </div>
 </div>
