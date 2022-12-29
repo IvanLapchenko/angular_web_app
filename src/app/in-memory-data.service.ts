@@ -18,15 +18,16 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 19, name: 'Magma' },
       { id: 20, name: 'Tornado' }
     ];
-    return { heroes };
-  }
 
-  // Overrides the genId method to ensure that a hero always has an id.
-  // If the heroes array is empty,
-  // the method below returns the initial number (11).
-  // if the heroes array is not empty, the method below returns the highest
-  // hero id + 1.
-  genId(heroes: Hero[]): number {
-    return heroes.length > 0 ? Math.max(...heroes.map(hero => hero.id)) + 1 : 11;
+    const users = [
+      { id: 1, username: "user1", password: 'qwerty', role: 'user' },
+      { id: 2, username: "user2", password: '12345', role: 'user' },
+      { id: 3, username: "user3", password: 'qwe123', role: 'user' },
+      { id: 4, username: "user4", password: '123qwe', role: 'user' },
+      { id: 5, username: "user5", password: '543rty', role: 'user' },
+      { id: 6, username: "admin", password: 'admin1', role: 'admin' },
+    ];
+
+    return { heroes, users };
   }
 }

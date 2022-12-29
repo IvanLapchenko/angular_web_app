@@ -9,3 +9,15 @@ form {
 form label {
     margin-bottom: -10px;
 }
+
+form input {
+    border-radius: 5px;
+}
+
+input.ng-touched.ng-invalid {
+  border: solid red 2px;
+}
+
+input.ng-touched.ng-valid {
+  border: solid green 2px;
+}
