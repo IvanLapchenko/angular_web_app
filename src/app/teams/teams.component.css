@@ -1,0 +1,9 @@
+.teams {
+    display: flex;
+    flex-direction: row;
+}
+
+.teams div {
+    width: 30%;
+    position: relative;
+}
